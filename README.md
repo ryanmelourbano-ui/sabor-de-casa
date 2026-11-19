@@ -2,6 +2,8 @@
 
 Aplicação web 100% *client-side* em JavaScript puro (ES Modules), HTML5 e CSS3 para venda de marmitas via conversa em português do Brasil, integrada diretamente à API do Google Gemini com *Function Calling* e motor determinístico de cálculo de preços.
 
+http://localhost:8888/index.html
+
 ---
 
 ## Arquitetura de Segurança e Guardrails (Defesa em 4 Camadas)
