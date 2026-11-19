@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sabor da Casa — Marmitaria Artesanal</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <!-- Cabeçalho do Restaurante -->
+  <header class="app-header">
+    <div class="brand">
+      <div class="brand-logo" aria-hidden="true">🍱</div>
+      <div class="brand-text">
+        <div class="brand-title-row">
+          <h1>Sabor da Casa</h1>
+          <span class="status-pill">
+            <span class="status-dot" aria-hidden="true"></span>
+            Aberto agora
+          </span>
+        </div>
+        <p class="brand-subtitle">Marmitaria Artesanal • Comida caseira feita no dia</p>
+      </div>
+    </div>
+
+    <div class="header-actions">
+      <div class="delivery-pill desktop-only" title="Taxa de entrega fixa">
+        🛵 Entrega fixa: <strong>R$ 6,00</strong> • 35–50 min
+      </div>
+      <button
+        type="button"
+        id="toggle-order-btn"
+        class="btn btn-secondary mobile-only"
+        aria-expanded="false"
+        aria-controls="order-sidebar"
+      >
+        Cardápio & Pedido (R$ 0,00)
+      </button>
+    </div>
+  </header>
+
+  <!-- Layout Principal: Chat + Painel Lateral ("Cardápio do dia" e "Seu pedido") -->
+  <main class="app-layout">
+    <!-- Área do Chat -->
+    <section class="chat-panel" aria-label="Conversa com o atendente Carlão">
+      <!-- Faixa superior do chat com perfil do atendente -->
+      <div class="chat-topbar">
+        <div class="agent-avatar" aria-hidden="true">👨‍🍳</div>
+        <div class="agent-info">
+          <strong>Carlão • Atendente Sabor da Casa</strong>
+          <span>Responde na hora • Personalize temperos e ponto da carne</span>
+        </div>
+      </div>
+
+      <!-- Histórico de Mensagens -->
+      <div
+        id="chat-messages"
+        class="chat-messages"
+        role="log"
+        aria-live="polite"
+        aria-atomic="false"
+      >
+        <!-- Mensagens inseridas via JS utilizando exclusivamente textContent -->
+      </div>
+
+      <!-- Indicador "digitando..." -->
+      <div id="typing-indicator" class="typing-indicator hidden" aria-live="polite">
+        <span class="typing-dots" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
+        <span class="typing-text">Carlão está anotando...</span>
+      </div>
+
+      <!-- Sugestões Rápidas (1 clique) -->
+      <div class="quick-prompts" aria-label="Sugestões rápidas de pedido">
+        <button
+          type="button"
+          class="chip-btn"
+          data-prompt="Qual é o cardápio de hoje?"
+        >
+          📋 Cardápio de hoje
+        </button>
+        <button
+          type="button"
+          class="chip-btn"
+          data-prompt="Quero 2 marmitas de bife acebolado sem cebola ao ponto"
+        >
+          🥩 2x Bife sem cebola ao ponto
+        </button>
+        <button
+          type="button"
+          class="chip-btn"
+          data-prompt="Me vê 1 frango grelhado, tira o alho e sem pimenta"
+        >
+          🍗 1x Frango sem alho e sem pimenta
+        </button>
+        <button
+          type="button"
+          class="chip-btn"
+          data-prompt="Quero 1 strogonoff e 1 omelete vegetariana"
+        >
+          🍲 Strogonoff + Omelete
+        </button>
+        <button
+          type="button"
+          class="chip-btn chip-highlight"
+          data-prompt="Qual o valor total para fechar o pedido?"
+        >
+          🧾 Ver total / Fechar pedido
+        </button>
+      </div>
+
+      <!-- Formulário de envio de mensagem -->
+      <form id="chat-form" class="chat-input-bar" autocomplete="off">
+        <label for="user-input" class="sr-only">Digite seu pedido ou dúvida</label>
+        <input
+          type="text"
+          id="user-input"
+          name="message"
+          placeholder="Escreva seu pedido (ex.: Quero 2 bifes sem cebola bem passado)..."
+          maxlength="500"
+          required
+        />
+        <button type="submit" id="send-btn" class="btn btn-primary">
+          <span>Enviar</span>
+          <span aria-hidden="true">➤</span>
+        </button>
+      </form>
+    </section>
+
+    <!-- Painel Lateral: Cardápio do dia + Seu pedido -->
+    <aside id="order-sidebar" class="order-sidebar" aria-label="Cardápio do dia e resumo do pedido">
+      <div class="sidebar-header">
+        <div>
+          <h2>Painel do Cliente</h2>
+          <p class="sidebar-subtitle">Clique em "+ Pedir" ou peça pelo chat</p>
+        </div>
+        <button
+          type="button"
+          id="close-order-btn"
+          class="btn-icon mobile-only"
+          aria-label="Fechar painel lateral"
+        >
+          ✕
+        </button>
+      </div>
+
+      <div class="sidebar-scroll-area">
+        <!-- Bloco "Cardápio do dia" -->
+        <section class="sidebar-section" aria-labelledby="menu-of-day-heading">
+          <div class="section-title-row">
+            <h3 id="menu-of-day-heading">🍴 Cardápio do dia</h3>
+            <span id="menu-day-badge" class="day-badge">Hoje</span>
+          </div>
+          <div id="menu-of-day-list" class="menu-of-day-list">
+            <!-- Itens do cardápio do dia renderizados via JS (textContent) -->
+          </div>
+        </section>
+
+        <!-- Bloco "Seu pedido" -->
+        <section class="sidebar-section" aria-labelledby="your-order-heading">
+          <div class="section-title-row">
+            <h3 id="your-order-heading">🛒 Seu pedido</h3>
+            <span id="order-status-badge" class="status-badge hidden">Confirmado</span>
+          </div>
+
+          <!-- Banner de Pedido Confirmado (visível após confirm_order) -->
+          <div id="confirmed-order-banner" class="confirmed-order-banner hidden"></div>
+
+          <div id="order-items-list" class="order-items-list">
+            <p class="empty-cart-msg">Nenhum item adicionado ainda.</p>
+          </div>
+        </section>
+      </div>
+
+      <!-- Rodapé de Totais e Ações ("Copiar pedido" e "Novo pedido") -->
+      <div class="order-totals">
+        <div class="totals-row">
+          <span>Subtotal dos itens</span>
+          <strong id="order-subtotal">R$ 0,00</strong>
+        </div>
+        <div class="totals-row">
+          <span>Taxa de entrega</span>
+          <strong id="order-delivery">R$ 6,00</strong>
+        </div>
+        <div class="totals-row totals-final">
+          <span>Total a pagar</span>
+          <strong id="order-total">R$ 0,00</strong>
+        </div>
+
+        <div class="order-actions">
+          <button type="button" id="copy-order-btn" class="btn btn-outline btn-sm">
+            📋 Copiar pedido
+          </button>
+          <button type="button" id="new-order-btn" class="btn btn-secondary btn-sm">
+            🔄 Novo pedido
+          </button>
+        </div>
+        <p id="order-action-feedback" class="action-feedback hidden" aria-live="polite"></p>
+      </div>
+    </aside>
+  </main>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

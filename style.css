@@ -1,0 +1,796 @@
+/* ==========================================================================
+   Sabor da Casa — Marmitaria Artesanal
+   Design Gastronômico Moderno & Responsivo (Mobile-First)
+   ========================================================================== */
+
+:root {
+  --bg-page: #f5f0e6;
+  --bg-surface: #ffffff;
+  --bg-surface-alt: #fbf9f5;
+  --bg-chat: #efe9dd;
+  --bg-user-bubble: #c84b31;
+  --text-user-bubble: #ffffff;
+  --bg-bot-bubble: #ffffff;
+  --primary: #c84b31;
+  --primary-hover: #a83820;
+  --primary-soft: #fdf2ef;
+  --secondary: #2d4739;
+  --text-main: #1e2220;
+  --text-muted: #5c6460;
+  --border-color: #e4ddd2;
+  --accent-bg: #fff6e0;
+  --accent-border: #f0cf85;
+  --accent-text: #6e4e0e;
+  --success-bg: #e6f7ed;
+  --success-border: #75d49c;
+  --success-text: #135e33;
+  --danger: #b42318;
+  --shadow-xs: 0 1px 2px rgba(28, 25, 23, 0.06);
+  --shadow-sm: 0 2px 8px rgba(28, 25, 23, 0.08);
+  --shadow-md: 0 12px 32px rgba(28, 25, 23, 0.14);
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 18px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  color: var(--text-main);
+  background-color: var(--bg-page);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Scrollbar personalizada */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(92, 100, 96, 0.25);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(92, 100, 96, 0.42);
+}
+
+/* Acessibilidade */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.desktop-only {
+  display: none;
+}
+
+/* ==========================================================================
+   Cabeçalho do Restaurante
+   ========================================================================== */
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.75rem 1.25rem;
+  background: linear-gradient(135deg, #23382c 0%, #192820 100%);
+  color: #ffffff;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: var(--shadow-sm);
+  z-index: 20;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.brand-logo {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #e05d40 0%, #b83b22 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.55rem;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.22);
+}
+
+.brand-title-row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.brand-text h1 {
+  font-size: 1.15rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  color: #ffffff;
+}
+
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  background-color: rgba(34, 197, 94, 0.18);
+  border: 1px solid rgba(74, 222, 128, 0.38);
+  color: #86efac;
+  padding: 0.12rem 0.55rem;
+  border-radius: 999px;
+}
+
+.status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: #4ade80;
+  box-shadow: 0 0 0 2px rgba(74, 222, 128, 0.3);
+}
+
+.brand-subtitle {
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.delivery-pill {
+  font-size: 0.82rem;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #f3f4f6;
+  padding: 0.4rem 0.85rem;
+  border-radius: 999px;
+}
+
+/* ==========================================================================
+   Botões
+   ========================================================================== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  font-size: 0.88rem;
+  font-weight: 600;
+  padding: 0.6rem 1rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.16s ease;
+}
+
+.btn-sm {
+  font-size: 0.82rem;
+  padding: 0.5rem 0.75rem;
+}
+
+.btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #d65338 0%, #b83d23 100%);
+  color: #ffffff;
+  box-shadow: 0 2px 6px rgba(200, 75, 49, 0.28);
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: linear-gradient(135deg, #c0442a 0%, #a0321b 100%);
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  background-color: #ece6dc;
+  color: var(--text-main);
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background-color: #e0d8cb;
+}
+
+.btn-outline {
+  background-color: #ffffff;
+  border-color: var(--border-color);
+  color: var(--text-main);
+}
+
+.btn-outline:hover:not(:disabled) {
+  background-color: #f4efe7;
+  border-color: #cfc6b8;
+}
+
+.btn-icon {
+  background: transparent;
+  border: none;
+  font-size: 1.15rem;
+  padding: 0.25rem 0.5rem;
+  cursor: pointer;
+  color: var(--text-muted);
+  border-radius: 6px;
+}
+
+.btn-icon:hover {
+  background-color: rgba(0, 0, 0, 0.06);
+}
+
+/* ==========================================================================
+   Layout Principal (Mobile-First)
+   ========================================================================== */
+.app-layout {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Painel do Chat */
+.chat-panel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg-chat);
+  background-image: radial-gradient(rgba(200, 75, 49, 0.055) 1px, transparent 0);
+  background-size: 20px 20px;
+  overflow: hidden;
+}
+
+.chat-topbar {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.65rem 1.15rem;
+  background-color: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.agent-avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background-color: var(--primary-soft);
+  border: 1px solid #f5cdc4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+}
+
+.agent-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.agent-info strong {
+  font-size: 0.88rem;
+  color: var(--text-main);
+}
+
+.agent-info span {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1.15rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  scroll-behavior: smooth;
+}
+
+/* Bolhas de Mensagem */
+.message-row {
+  display: flex;
+  flex-direction: column;
+  max-width: 86%;
+  animation: fadeIn 0.22s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.message-row.user {
+  align-self: flex-end;
+  align-items: flex-end;
+}
+
+.message-row.bot {
+  align-self: flex-start;
+  align-items: flex-start;
+}
+
+.message-sender {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  margin-bottom: 0.22rem;
+  padding: 0 0.3rem;
+}
+
+.message-bubble {
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-xs);
+  font-size: 0.93rem;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.message-row.user .message-bubble {
+  background: linear-gradient(135deg, #c84b31 0%, #b13b22 100%);
+  color: var(--text-user-bubble);
+  border-bottom-right-radius: 4px;
+}
+
+.message-row.bot .message-bubble {
+  background-color: var(--bg-bot-bubble);
+  color: var(--text-main);
+  border: 1px solid var(--border-color);
+  border-bottom-left-radius: 4px;
+}
+
+.message-time {
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  margin-top: 0.22rem;
+  padding: 0 0.3rem;
+}
+
+/* Indicador "digitando..." */
+.typing-indicator {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.45rem 1.15rem;
+  background-color: rgba(255, 255, 255, 0.85);
+  border-top: 1px solid var(--border-color);
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+.typing-dots {
+  display: inline-flex;
+  gap: 4px;
+}
+
+.typing-dots span {
+  width: 6px;
+  height: 6px;
+  background-color: var(--primary);
+  border-radius: 50%;
+  animation: pulseDot 1.2s infinite ease-in-out;
+}
+
+.typing-dots span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.typing-dots span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes pulseDot {
+  0%, 80%, 100% {
+    transform: scale(0.6);
+    opacity: 0.4;
+  }
+  40% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Sugestões Rápidas (Chips) */
+.quick-prompts {
+  display: flex;
+  gap: 0.45rem;
+  padding: 0.55rem 1rem;
+  background-color: rgba(255, 255, 255, 0.72);
+  border-top: 1px solid var(--border-color);
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.chip-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.38rem 0.75rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-main);
+  background-color: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  flex-shrink: 0;
+}
+
+.chip-btn:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+  background-color: var(--primary-soft);
+  transform: translateY(-1px);
+}
+
+.chip-btn.chip-highlight {
+  background-color: var(--accent-bg);
+  border-color: var(--accent-border);
+  color: var(--accent-text);
+}
+
+.chip-btn.chip-highlight:hover {
+  background-color: #ffefc2;
+  border-color: #e0b65a;
+}
+
+/* Barra de Input */
+.chat-input-bar {
+  display: flex;
+  gap: 0.6rem;
+  padding: 0.8rem 1rem;
+  background-color: var(--bg-surface);
+  border-top: 1px solid var(--border-color);
+}
+
+.chat-input-bar input {
+  flex: 1;
+  padding: 0.7rem 0.95rem;
+  border: 1.5px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  font-size: 0.94rem;
+  background-color: var(--bg-surface-alt);
+  outline: none;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.chat-input-bar input:focus {
+  border-color: var(--primary);
+  background-color: #ffffff;
+}
+
+/* ==========================================================================
+   Painel Lateral "Cardápio do dia" e "Seu pedido"
+   ========================================================================== */
+.order-sidebar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: min(92vw, 400px);
+  background-color: var(--bg-surface);
+  border-left: 1px solid var(--border-color);
+  box-shadow: var(--shadow-md);
+  display: flex;
+  flex-direction: column;
+  transform: translateX(100%);
+  transition: transform 0.25s ease;
+  z-index: 30;
+}
+
+.order-sidebar.open {
+  transform: translateX(0);
+}
+
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.9rem 1.1rem;
+  background-color: var(--bg-surface-alt);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.sidebar-header h2 {
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--secondary);
+}
+
+.sidebar-subtitle {
+  font-size: 0.74rem;
+  color: var(--text-muted);
+}
+
+.sidebar-scroll-area {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-section {
+  padding: 1rem 1.1rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.section-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+}
+
+.section-title-row h3 {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--text-main);
+}
+
+.day-badge {
+  font-size: 0.74rem;
+  font-weight: 700;
+  background-color: var(--accent-bg);
+  border: 1px solid var(--accent-border);
+  color: var(--accent-text);
+  padding: 0.16rem 0.6rem;
+  border-radius: 999px;
+}
+
+.status-badge {
+  font-size: 0.72rem;
+  font-weight: 700;
+  background-color: var(--success-bg);
+  border: 1px solid var(--success-border);
+  color: var(--success-text);
+  padding: 0.16rem 0.6rem;
+  border-radius: 999px;
+}
+
+.confirmed-order-banner {
+  background-color: var(--success-bg);
+  border: 1px solid var(--success-border);
+  color: var(--success-text);
+  border-radius: var(--radius-sm);
+  padding: 0.75rem 0.85rem;
+  font-size: 0.81rem;
+  margin-bottom: 0.75rem;
+  white-space: pre-wrap;
+  line-height: 1.45;
+}
+
+/* Lista do Cardápio do Dia */
+.menu-of-day-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.menu-item-card {
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  padding: 0.75rem;
+  background-color: var(--bg-surface-alt);
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.menu-item-card:hover {
+  border-color: #d3c7b6;
+  box-shadow: var(--shadow-xs);
+}
+
+.menu-item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.menu-item-title {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.menu-item-price {
+  font-size: 0.88rem;
+  font-weight: 800;
+  color: var(--primary);
+  background-color: var(--primary-soft);
+  padding: 0.12rem 0.5rem;
+  border-radius: 6px;
+  white-space: nowrap;
+}
+
+.menu-item-desc {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.menu-item-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-top: 0.25rem;
+}
+
+.menu-item-meta {
+  font-size: 0.72rem;
+  color: #4f5855;
+  font-weight: 500;
+}
+
+.menu-quick-add-btn {
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.25rem 0.6rem;
+  border-radius: 6px;
+  border: 1px solid var(--primary);
+  background-color: #ffffff;
+  color: var(--primary);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+.menu-quick-add-btn:hover {
+  background-color: var(--primary);
+  color: #ffffff;
+}
+
+/* Lista de Itens do Pedido */
+.order-items-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.empty-cart-msg {
+  color: var(--text-muted);
+  font-size: 0.84rem;
+  text-align: center;
+  padding: 0.9rem 0.5rem;
+  background-color: var(--bg-surface-alt);
+  border: 1px dashed var(--border-color);
+  border-radius: var(--radius-sm);
+}
+
+.order-item-card {
+  border: 1px solid var(--border-color);
+  border-left: 4px solid var(--primary);
+  border-radius: var(--radius-sm);
+  padding: 0.65rem 0.75rem;
+  background-color: var(--bg-surface-alt);
+}
+
+.order-item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.5rem;
+  font-weight: 600;
+  font-size: 0.87rem;
+}
+
+.order-item-price {
+  font-weight: 700;
+  color: var(--primary);
+  white-space: nowrap;
+}
+
+/* Rodapé de Totais */
+.order-totals {
+  padding: 0.95rem 1.1rem;
+  border-top: 1px solid var(--border-color);
+  background-color: var(--bg-surface-alt);
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.totals-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.88rem;
+  color: var(--text-muted);
+}
+
+.totals-row.totals-final {
+  font-size: 1.08rem;
+  color: var(--text-main);
+  padding-top: 0.5rem;
+  margin-top: 0.15rem;
+  border-top: 1.5px dashed var(--border-color);
+}
+
+.totals-row.totals-final strong {
+  color: var(--primary);
+}
+
+.order-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.55rem;
+  margin-top: 0.5rem;
+}
+
+.action-feedback {
+  font-size: 0.79rem;
+  color: var(--success-text);
+  text-align: center;
+  font-weight: 700;
+  margin-top: 0.2rem;
+}
+
+/* ==========================================================================
+   Breakpoint Desktop (>= 820px)
+   ========================================================================== */
+@media (min-width: 820px) {
+  .mobile-only {
+    display: none !important;
+  }
+
+  .desktop-only {
+    display: inline-flex;
+  }
+
+  .app-layout {
+    flex-direction: row;
+  }
+
+  .order-sidebar {
+    position: static;
+    width: 400px;
+    transform: none;
+    box-shadow: none;
+  }
+
+  .message-row {
+    max-width: 66%;
+  }
+}
